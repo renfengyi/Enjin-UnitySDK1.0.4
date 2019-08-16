@@ -1,0 +1,15 @@
+Login|query login{{result:EnjinOauth(email:"{0}",password:"{1}"){{id,access_tokens,roles{{name}}identities{{app_id}}}}}}
+GetAppByName|query getAppID{{result:EnjinApps(name:"{0}"){{id}}}}
+GetAppByID|query getAppByID{{result:EnjinApps(id:{0}){{id,name,description,image}}}}
+GetAppsByUserID|query getAppsByUser{{result:EnjinUsers(id:{0}){{identities{{id,app_id,app{{name}}}}}}}}
+CreateApp|mutation createApp{{App:CreateEnjinApp(name:"{0}",description:"{1}",image:"{2}"){{id,name,description,image}}}}
+DeleteRole|mutation deleteRole{{result:DeleteEnjinRole(name:"{0}"){{id}}}}
+GetPlatformInfo|query GetApps{platformInfo:EnjinPlatform{id,network,name,notifications,apps{id,name,description,image}}}
+GetEnjBalances|query getIdentities{{EnjinIdentities(id:{0}){{tokens{{balance}}}}}}
+GetActiveTokens|query getIdentities{{activeTokens:EnjinIdentities(id:{0}){{id,tokens{{balance}}}}}}
+CreateRole|mutation createRole{{result:CreateEnjinRole(name:"{0}",permissions:{1}){{id,name,permissions{{name}}}}}}
+UpdateRole|mutation updateRole{{result:UpdateEnjinRole(name:"{0}",new_name:"{1}",permissions:{2}){{id,name,permissions{{name}}}}}}
+UpdateApp|mutation updateApp{{App:UpdateEnjinApp(name:"{0}",description:"{1}",image:"{2}"){{id,name,description,image}}}}
+InviteUser|mutation inviteUser{{UpdateEnjinApp(invite:{{email:"{0}"}}){{id,identities{{user{{id}}}}}}}}
+InviteUserWithName|mutation inviteUser{{UpdateEnjinApp(invite:{{email:"{0}",name:"{1}"}}){{id,identities{{user{{id}}}}}}}}
+SetAllowance|mutation ApproveMAXENJ{{CreateEnjinRequest(identity_id:{0},type:APPROVE,approve_enj_data:{{value:-1}}){{id,encoded_data}}}}

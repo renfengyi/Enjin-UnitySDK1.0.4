@@ -1,0 +1,13 @@
+SearchIdentities|query searchIdentities{{result:EnjinSearch(term:"{0}"){{__typename...on EnjinIdentity{{id,user{{id,name}},ethereum_address,linking_code,fields{{key,value,searchable,displayable,unique}}}}}}}}
+GetAllIdentities|query getAllIdentities{result:EnjinIdentities{id,user{id,name},ethereum_address,linking_code,updated_at,created_at,fields{key,value,searchable,displayable,unique}}}
+GetRoles|query getRoles{result:EnjinRoles{id,name,permissions{id,name}}}
+CreateIdentity|mutation createIdentity{{result:CreateEnjinIdentity(user_id:{0},ethereum_address:"{1}",fields:{2}){{id,app_id,user{{id}},ethereum_address,linking_code,updated_at,created_at,fields{{key,value,searchable,displayable,unique}}}}}}
+CreateIdentityWithEmail|mutation createIdentity{{result:CreateEnjinIdentity(email:{0}){{id,app_id,user{{id}},ethereum_address,linking_code,updated_at,created_at,fields{{key,value,searchable,displayable,unique}}}}}}
+UpdateFields|mutation updateFields{{result:UpdateEnjinIdentity(id:{0},fields:{1}){{id,user{{id}},ethereum_address,linking_code,updated_at,created_at,fields{{key,value,searchable,displayable,unique}}}}}}
+GetIdentity|query getIdentity{{result:EnjinIdentities(id:{0}){{id,user{{id}},ethereum_address,linking_code,updated_at,created_at,fields{{key,value,searchable,displayable,unique}}}}}}
+GetIdentitiesPagination|{{EnjinIdentities(pagination:{{page:{0},limit:{1}}}){{items{{id,user{{id,name}},ethereum_address,linking_code,updated_at,created_at,fields{{key,value,searchable,displayable,unique}}}},cursor{{total,hasPages,perPage,currentPage}}}}}}
+UpdateIdentity|mutation updateIdentity{{result:UpdateEnjinIdentity(id:{0},user_id:{1},ethereum_address:"{2}",fields:{3}){{id,app_id,user{{id}},ethereum_address,linking_code,updated_at,created_at,fields{{key,value,searchable,displayable,unique}}}}}}
+UpdateBalances|query getEthBalance{{balances:EnjinIdentities(id:{0},ethereum_address:"{1}"){{enj_balance, eth_balance}}}}
+LinkIdentity|mutation updateIdentity{{result:UpdateEnjinIdentity(id:{0},ethereum_address:"{1}"){{id,app_id,user{{id}},ethereum_address,linking_code,updated_at,created_at,fields{{key,value,searchable,displayable,unique}}}}}}
+UnlinkIdentity|mutation deleteIdentity{{result:DeleteEnjinIdentity(id:{0},unlink:true){{id,linking_code,ethereum_address}}}}
+DeleteIdentity|mutation deleteIdentity{{result:DeleteEnjinIdentity(id:{0},unlink:false){{id,linking_code,ethereum_address}}}}
